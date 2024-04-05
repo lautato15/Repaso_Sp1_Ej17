@@ -6,8 +6,13 @@ function optimalPath(path) {
     ESTE: "OESTE",
   };
   for (let i = 0; i < path.length; i++) {
-    if (path[i] === opPath[path[i + 1]]) path.splice(i, 2);
+    if (!(path[i] in opPath)) return "Error de parametros";
+    if (path[i] === opPath[path[i + 1]]) {
+      path.splice(i, 2);
+      i = -1;
+    }
   }
+  if (!(path[0] in opPath) && path.length > 0) return "Error de parametros";
   return path;
 }
 // Ejercicio 17
